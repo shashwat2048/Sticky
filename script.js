@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function updateCharacter() {
-        // Movement & actions based on keys
         if (keys["ArrowRight"] && !isJumping) {
             normalPosition();
             moveRight();
