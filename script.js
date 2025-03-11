@@ -10,15 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let isJumping = false;
     let speed = 5; 
     let keys = {};
-
+    let isWheeling = false;
     const bgMusic = document.getElementById("backgroundMusic");
-    bgMusic.volume = 0.5; 
+    bgMusic.volume = 0.4; 
 
     const jump = new Audio("jump.mp3");
     const flip = new Audio("flip.mp3");
     const kill = new Audio("kill.mp3");
     const legStand = new Audio("legstand.mp3");
     const walk = new Audio("walking.mp3");
+    walk.volume = 1;
     const down = new Audio("down.mp3");
     const yog = new Audio("yoga.mp3");
     const atten = new Audio("attention.mp3");
@@ -37,16 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function updateCharacter() {
-        if (keys["ArrowRight"] && !isJumping) {
+        if (keys["ArrowRight"] && !isJumping && !isWheeling) {
             normalPosition();
             moveRight();
         } 
-        if (keys["ArrowLeft"] && !isJumping) {
+        if (keys["ArrowLeft"] && !isJumping && !isWheeling) {
             normalPosition();
             moveLeft();
         } 
-        if (keys["Shift"]) {
+        if (keys["Shift"] && !isWheeling) {
             normalPosition();
+            isWheeling = true;
             kartWheel();
         }
         if (keys["ArrowUp"] && !isJumping) {
@@ -175,16 +177,18 @@ document.addEventListener("DOMContentLoaded", () => {
         rightLeg.style.right = "0px";
         charBody.style.margin = "0px";
         charHead.style.backgroundColor = "black";
+        charHead.style.top = "0px";
     }
 
     function kartWheel(){
         let spin = new Audio("spin.mp3");
-        spin.play();
         character.style.transition = "transform 0.4s ease-out";
         character.style.transform = "rotate(360deg)";
+        spin.play();
         setTimeout(() => {
             character.style.transition = "none";
             character.style.transform = "rotate(0deg)";
+            isWheeling = false
         }, 400);
     }
 
@@ -270,7 +274,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function hurt(){
         kill.play();
-        charBody.style.margin = "10px";
+        charHead.style.position = "relative"; 
+        charHead.style.top = "-10px";
         charHead.style.backgroundColor = "red";
     }
 
