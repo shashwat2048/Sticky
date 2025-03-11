@@ -17,7 +17,8 @@
   
   body {
     font-family: 'Roboto', sans-serif; 
-    background: linear-gradient(135deg, var(--background-color), var(--secondary-color));
+    background: rgb(255,143,35);
+    background: radial-gradient(circle, rgba(255,143,35,1) 0%, rgba(41,6,133,1) 100%);
     color: var(--text-color);
     display: flex;
     flex-direction: column;
@@ -36,6 +37,7 @@
   h2 {
     font-size: 1.8rem;
     margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   }
   
   ul {
@@ -45,6 +47,7 @@
     flex-wrap: wrap;
     list-style: none;
     font-size: 1.1rem;
+    font-weight: 600;
     line-height: 1.6; 
     padding: 10px 5px;
     background-color: rgba(255, 255, 255, 0.1);
@@ -54,11 +57,14 @@
     align-items: center;
     width: 80%;
     height: 15vh;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   }
   li{
-    border: 1px solid yellow;
+    border: 1px solid rgb(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     border-radius: 8px;
     padding: 8px;
+    background-color: rgba(41,6,133,0.1);
   }
   ul{
     margin-bottom: 8px;
